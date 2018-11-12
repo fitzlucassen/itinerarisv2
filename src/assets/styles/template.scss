@@ -1,0 +1,188 @@
+// Reset
+html, body {
+	background: #ffffff;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	display: block;
+
+	font-family: $fontContent;
+}
+
+// Usefull helpers
+.clear {
+	clear: both;
+}
+h1.big-title{
+	font-family: $fontTravelTitle;
+	font-weight: normal;
+	font-size: 50px;
+}
+
+// Buttons
+.mat-mini-fab {
+	background-color: $mainColor !important;
+
+	&.gray {
+		background-color: $cutColor !important;	
+	}
+}
+
+app-itinerary-user-dialog .mat-button-wrapper {
+	padding: 0 !important;
+}
+
+// Manage page container
+.webp .big-container {
+	background: transparent url(/assets/images/bg2.webp) center center no-repeat;
+}
+
+.no-webp .big-container {
+	background: transparent url(/assets/images/bg2.png) center center no-repeat;
+}
+
+.webp .big-container, .no-webp .big-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+// Manage sidenav style
+mat-sidenav-container {
+    margin: 0 !important;
+	background-color: transparent !important;
+	box-shadow: 1px 1px 3px $thirdColor !important;
+	
+	mat-sidenav{
+		width: 300px;
+
+		&:not(.mat-sidenav-list) {
+			.mat-avatar {
+				height: 64px;
+				width: 64px;
+				font-size: 60px
+			}
+		
+			mat-icon {
+				fill: $fontColor;
+				position: relative;
+			}
+		}
+	}
+}
+
+// Manage Toolbar style
+mat-toolbar {
+	.mat-input-placeholder {
+		color: $fontColor !important;
+	}
+
+	&.mat-hue-2{
+		mat-icon {
+			color: rgba($fontColor, 0.87);
+		}
+	}
+
+	&.mat-toolbar.mat-primary{
+		background-color: $mainColor;
+	}
+
+	&.mat-whiteframe-z1 {
+		color: rgba($fontColor, 0.87);
+		font-size: 20px;
+		
+		position: relative;
+		display: flex;
+		width: 100%;
+		min-height: 64px;
+		z-index: 2;
+		background-color: $secondColor;
+	
+		box-shadow: 0 3px 1px -2px rgba($thirdColor, .14), 0 2px 2px 0 rgba($thirdColor, .098), 0 1px 5px 0 rgba($thirdColor, .084);
+		box-sizing: border-box;
+		flex-direction: column;
+	
+		.mat-toolbar-tools {
+			font-weight: 400;
+			padding: 0 16px;
+			
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			width: 100%;
+			height: 64px;
+			max-height: 64px;
+			margin: 0;
+	
+			h3 {
+				font-size: inherit;
+				font-weight: inherit;
+				margin: inherit;
+			}
+	
+			mat-icon {
+				position: absolute;
+				right: 10%;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.mat-dialog-container {
+	height: 100% !important;
+}
+
+// Manage tabs styles
+mat-tab-header {
+	margin-bottom: 2.5%;
+
+	.mat-tab-label {
+		font-size: 16px !important;
+	}
+
+	.mat-tab-label[aria-selected="true"] {
+		opacity: 1 !important;
+		background-color: rgba(197, 202, 233, .3);
+	}
+
+	.mat-ink-bar {
+		background-color: $mainColor !important;
+	}
+}
+
+// Manage input styles
+.mat-input-underline .mat-input-ripple{
+	background-color: $mainColor;
+}
+.mat-focused .mat-input-placeholder{
+	color: $mainColor;
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) {
+	.mat-slide-toggle-thumb{
+		background-color: $cutColor;
+	}
+	.mat-slide-toggle-bar{
+		background-color: lighten($cutColor, 10%);
+	}
+}
+
+.mat-option.mat-selected.mat-primary, .mat-primary .mat-option.mat-selected {
+	color: $mainColor;
+}
+
+.mat-select:focus:not(.mat-select-disabled).mat-primary { 
+	.mat-select-arrow, .mat-select-trigger {
+		color: $mainColor;
+	}
+
+	.mat-select-underline{
+		background-color: $mainColor;
+	}
+}
+

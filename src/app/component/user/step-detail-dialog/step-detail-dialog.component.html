@@ -1,0 +1,76 @@
+<div class="mat-padding step-detail-dialog" style="overflow: auto;" [style.max-height]="screenHeight + 'px'">
+    <form name="userForm" [formGroup]="form" (ngSubmit)="registerStepDetail()">
+        <h2>Partagez les bons plans d'une destination</h2>
+        <h3>
+            <mat-icon mat-list-avatar class="alignMiddle">place</mat-icon>
+            <span class="alignMiddle">Choisissez l'étape :</span>
+        </h3>
+
+        <mat-form-field>
+            <input matInput placeholder="Étape concernée" aria-label="Étape concernée" [disabled]="stepDetail != null && stepDetail.id > 0" [matAutocomplete]="auto" formControlName="step"
+                [(ngModel)]="search" required>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectStepId($event)">
+                <mat-option *ngFor="let step of steps | SearchStepPipe : search" [value]="step.city ">
+                    <span>{{ step.city }}</span>
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <br/>
+
+        <h3>
+            <mat-icon mat-list-avatar class="alignMiddle">beenhere</mat-icon>
+            <span class="alignMiddle">Quel type de détail ?</span>
+        </h3>
+        <div layout layout-sm="column">
+            <mat-form-field>
+                <mat-select placeholder="Parler de ..." formControlName="detailType" [(ngModel)]="stepDetailType" required flex>
+                    <mat-option value="local_hotel">Hébergement</mat-option>
+                    <mat-option value="restaurant">Nourriture</mat-option>
+                    <mat-option value="airplanemode_active">Transport</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <br/>
+
+        <div *ngIf="stepDetailType != null">
+            <h3>
+                <mat-icon mat-list-avatar class="alignMiddle">{{stepDetailType}}</mat-icon>
+                <span class="alignMiddle">Parlez nous de votre expérience :</span>
+            </h3>
+            <div layout layout-sm="column">
+            </div>
+            <mat-grid-list cols="2" rowHeight="100px">
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput placeholder="Nom..." formControlName="detailName" [(ngModel)]="stepDetail.name" required>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Prix..." formControlName="detailPrice" [(ngModel)]="stepDetail.price" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Devise..." [matAutocomplete]="auto2" formControlName="detailCurrency" [(ngModel)]="searchCurrency" required>
+                        <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="assignCurrency($event)">
+                            <mat-option *ngFor="let currency of currencies | SearchCurrencyPipe : searchCurrency" [value]="currency.code">
+                                <span>{{ currency.code }} - {{ currency.description }}</span>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="2">
+                    <mat-form-field>
+                        <textarea matInput class="big-form" placeholder="Petite description" formControlName="detailDescription" [(ngModel)]="stepDetail.description"
+                            flex></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+            <br/>
+
+            <button mat-raised-button style="margin: 2.5%;" color="primary">VALIDER</button>
+        </div>
+    </form>
+</div>

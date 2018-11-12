@@ -1,0 +1,32 @@
+<div class="mat-padding" style="overflow: auto;" [style.max-height]="screenHeight + 'px'">
+	<form name="userForm" [formGroup]="form" (ngSubmit)="registerStop()">
+		<div layout layout-sm="column">
+			<mat-form-field>
+				<input matInput class="big-form" placeholder="Ville du free-stop" formControlName="city" [(ngModel)]="newStop.city" required flex autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #search />
+				<mat-hint *ngIf="!city.untouched && !city.valid && city.errors.required" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">ville requise</mat-hint>
+				<mat-hint *ngIf="!city.untouched && !city.valid && city.errors.minlength" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">2 caractères minimum</mat-hint>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput [matDatepicker]="picker" type="text" class="big-form" placeholder="Date du free-stop" formControlName="date" [(ngModel)]="newStop.date" required flex/>
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-hint *ngIf="!date.untouched && !date.valid && date.errors.required" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">date requise</mat-hint>
+			</mat-form-field>
+			<mat-datepicker #picker></mat-datepicker>
+			<button mat-mini-fab type="button" (click)="getCurrentPosition()" style="margin-right: 0;float:right;">
+				<mat-icon class="">location_searching</mat-icon>
+			</button>
+		</div>
+		<mat-form-field style="width:100% !important;">
+			<textarea matInput class="big-form" placeholder="Description du free-stop" formControlName="description" [(ngModel)]="newStop.description" required flex></textarea>
+			<mat-hint *ngIf="!description.untouched && !description.valid && description.errors.required" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">description requise</mat-hint>
+			<mat-hint *ngIf="!description.untouched && !description.valid && description.errors.minlength" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">3 caractères minimum</mat-hint>
+		</mat-form-field>
+		<br/>
+		<br/>
+		<app-upload-file [stopId]="newStop.id" [images]="images"></app-upload-file>
+		<br/>
+		<mat-spinner *ngIf="isLoading"></mat-spinner>
+		<br/>
+		<button mat-raised-button style="margin: 2.5%;" color="primary">Valider</button>
+	</form>
+</div>

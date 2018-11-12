@@ -1,0 +1,29 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~font-awesome/css/font-awesome.min.css';
+@import '~@ngx-share/button/themes/default/default-theme';
+
+@import './assets/styles/typography';
+@import './assets/styles/variable';
+@import './assets/styles/template';
+@import './assets/styles/maps';
+
+app-root .tempDiv {
+	width: 100%;
+	height: 100%;
+	background: #ffffff;
+	text-align: center;
+}
+
+.mat-overlay-pane {
+	width: 600px;
+}
+
+.fb-comments > span, .fb-comments iframe {
+	width: 300px !important;
+}
+
+.step-detail-dialog .mat-form-field-infix {
+    width: auto;
+}
+
+@import './assets/styles/responsive_template';

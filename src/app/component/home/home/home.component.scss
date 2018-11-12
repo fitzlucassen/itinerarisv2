@@ -1,0 +1,163 @@
+@import '../../../../assets/styles/typography';
+@import '../../../../assets/styles/variable';
+
+h1{
+    font-family: $fontTravelTitle;
+    font-size: 150px;
+    font-weight: normal;
+    color: $mainColor;
+    margin: 5%;
+}
+
+h2{
+    font-family: $fontTravelTitle;
+    font-weight: normal;
+    font-size: 40px;
+    color: $mainColor;
+}
+
+h1 span, h2 span{
+    color: $cutColor;
+}
+
+nav{
+    text-align: center;
+}
+
+
+ul {
+    padding: 0;
+
+    li{
+        list-style: none;
+        display: inline-block;
+        margin: 0 2% 2% 2%;
+
+        a{
+            width: 240px;
+            display: inline-block;
+            background: $mainColor;
+            border: 1px solid $fontColor;
+            border-radius: 2px;
+        
+            font-family: $fontLightTitle;
+            color: $fontColor;
+            font-size: 20px;
+            text-decoration: none;
+            padding: 11px 20px;
+        
+            transition: all 0.3s linear;
+
+            &:hover{
+                color: $mainColor;
+                border: 1px solid $mainColor;
+                background: transparent;    
+            }
+        }
+
+        &:last-child {
+            a {
+                color: $mainColor;
+                border: 1px solid $mainColor;
+                background: transparent;  
+            }
+        }
+    }
+}
+
+.strat {
+    background: $secondColor;
+    padding: 2.5%;
+    box-shadow: inset 4px 4px 8px rgba(9, 64, 116, 0.8);
+
+    h2{
+        text-align: center;
+        color: $fontColor;
+    }
+
+    .tier-column {
+        display: inline-block;
+        vertical-align: top;
+        width: 33%;
+        text-align: center;
+        color: $fontColor;
+        font-family: $fontLightTitle;
+
+        p:first-child {
+            height: 60px;
+        }
+        p:first-child mat-icon{
+            font-size: 40px;
+        }
+        p:last-child {
+            width: 60%;
+            margin: auto;
+            font-size: 16px;
+        }
+    }
+
+    .plain-description {
+        color: $fontColor;
+        font-family: $fontTravelTitle;
+        font-size: 30px;
+        margin: 5%;
+
+        img {
+            display: inline-block;
+            width: 300px;
+            vertical-align: middle;
+        }
+        p {
+            vertical-align: middle;
+            margin: 0;
+            display: inline-block;
+            padding: 0 5%;
+            width: calc(90% - 300px);
+
+            span{
+                color: lighten($cutColor, 10%);
+            }
+        }
+    }
+
+    &:last-child {
+        background: $fontColor;
+        box-shadow: none;
+
+        h2{
+            text-align: center;
+            color: $mainColor;
+        }
+    }
+
+    .footer {
+        font-family: $fontLightTitle;
+        color: $mainColor;
+        
+        a {
+            color: $cutColor;
+        }
+    }
+}
+
+@media screen and (max-width: 950px) {
+    h1{
+        text-align: center;
+        font-size: 75px;
+    }
+    h2 {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .strat .plain-description {
+        img, p {
+            display: block;
+            margin: 2.5% auto;
+        }
+        p {
+            width: 90%;
+        }
+    }
+}

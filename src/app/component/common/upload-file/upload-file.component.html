@@ -1,0 +1,29 @@
+<input #fileInput id="fileInput" name="uploads" type="file" class="ng-hide" multiple (change)="uploadChange($event)" >
+<button mat-raised-button #uploadButton id="uploadButton" (click)="triggerUpload($event)">Photos</button>
+
+<mat-form-field mat-no-float style="width: calc(100% - 100px) !important;">
+    <input matInput #textInput id="textInput" ng-model="fileName" type="text" placeholder="Aucun fichier ajouté" ng-readonly="true"
+        (click)="triggerUpload($event)">
+</mat-form-field>
+
+<br/>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<br/>
+
+<mat-list>
+    <mat-list-item *ngFor="let image of images">
+        <img mat-list-avatar src="{{image.url}}" alt="Image uploadée">
+        <h3 mat-line>
+            <mat-form-field mat-no-float>
+                <input matInput #captionImage id="captionImage" [(ngModel)]="image.caption" type="text" placeholder="Légende de la photo">
+            </mat-form-field>
+        </h3>
+
+        <p mat-line>
+            <span> {{image.date}} </span>
+        </p>
+        <div>
+            <mat-icon class="little-icon" (click)="removePicture(image.id)">delete</mat-icon>
+        </div>
+    </mat-list-item>
+</mat-list>

@@ -1,0 +1,22 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://itineraris.fr/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1.00</priority>
+	</url>
+	<url>
+		<loc>https://itineraris.fr/compte/connexion.html</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.90</priority>
+	</url>
+	<url>
+		<loc>https://itineraris.fr/compte/inscription.html</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.90</priority>
+	</url>
+	<url>
+		<loc>https://itineraris.fr/visiteur/itineraires.html</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+</urlset>

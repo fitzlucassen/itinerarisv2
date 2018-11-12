@@ -1,0 +1,37 @@
+<div class="mat-padding">
+	<div id="membership-container">
+		<h2 class="big-title">Entrez vos informations d'identification afin de <span>créer un compte</span></h2>
+
+		<form [formGroup]="form" (ngSubmit)="signup($event)">
+			<mat-form-field>
+				<input matInput class="big-form" placeholder="Pseudo" required formControlName="name" [(ngModel)]="newUser.name" />
+				<mat-hint *ngIf="!name.untouched && !name.valid && name.errors.required" [ngStyle]="{'color': 'red'}" align="start"
+				 style="right: 0;">name requis</mat-hint>
+				<mat-hint *ngIf="!name.untouched && !name.valid && name.errors.minlength" [ngStyle]="{'color': 'red'}" align="start"
+				 style="right: 0;">3 caractères minimum</mat-hint>
+			</mat-form-field>
+
+			<br class="only-responsive" />
+			<mat-form-field>
+				<input matInput class="big-form" placeholder="E-mail" required type="email" formControlName="email" [(ngModel)]="newUser.email" />
+				<mat-hint *ngIf="!email.untouched && !email.valid && email.errors.required" [ngStyle]="{'color': 'red'}" align="start"
+				 style="right: 0;">e-mail requis</mat-hint>
+				<mat-hint *ngIf="!email.untouched && !email.valid && email.errors.pattern" [ngStyle]="{'color': 'red'}" align="start"
+				 style="right: 0;">email must be like aaa@yyy.zzz</mat-hint>
+			</mat-form-field>
+			<br class="only-responsive" />
+			<mat-form-field>
+				<input matInput class="big-form" placeholder="Mot de passe" required type="password" formControlName="password"
+				 [(ngModel)]="newUser.password" />
+				<mat-hint *ngIf="!password.untouched && !password.valid && password.errors.required" [ngStyle]="{'color': 'red'}"
+				 align="start" style="right: 0;">mot de passe requis</mat-hint>
+				<mat-hint *ngIf="!password.untouched && !password.valid && password.errors.minlength" [ngStyle]="{'color': 'red'}"
+				 align="start" style="right: 0;">3 caractères minimum</mat-hint>
+			</mat-form-field>
+			<br />
+			<mat-spinner *ngIf="isLoading"></mat-spinner>
+			<br />
+			<p class="signup-button"><button>Valider</button></p>
+		</form>
+	</div>
+</div>

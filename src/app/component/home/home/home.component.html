@@ -1,0 +1,62 @@
+<h1>
+	Itinerar<span>is</span>
+</h1>
+<nav>
+	<h2>Vous partez en <span>voyage</span>&nbsp;?<br />Donnez de vos nouvelles en <span>temps réel</span> à vos
+		proches&nbsp;!</h2>
+	<ul>
+		<li><a href="/compte/connexion.html">Je créé mon journal de bord</a></li>
+		<li><a href="/visiteur/itineraires.html">Je cherche un itinéraire</a></li>
+	</ul>
+</nav>
+<div class="strat" [ngsRevealSet]="{ reset:true}" [ngsInterval]="700" [ngsSelector]="'.tier-column'">
+	<h2>Avec Itineraris, tu crées simplement et en quelques cliques ton itinéraire</h2>
+
+	<div class="tier-column">
+		<p>
+			<mat-icon mat-list-avatar>map</mat-icon>
+		</p>
+		<p>Crée ton itinéraire<br />seul ou partagé</p>
+	</div>
+
+	<div class="tier-column">
+		<p>
+			<mat-icon mat-list-avatar>location_on</mat-icon>
+		</p>
+		<p>Ajoute des étapes, des points d'intérêts<br />ou des bons plans</p>
+	</div>
+
+	<div class="tier-column">
+		<p>
+			<mat-icon mat-list-avatar>share</mat-icon>
+		</p>
+		<p>Visualise sous forme de carte<br />ou de journal de bord puis partage le</p>
+	</div>
+
+	<div class="plain-description">
+		<img src="assets/images/home-1.PNG" alt="Exemple itinéraire Itineraris" width="300px;" [ngsReveal]="{ reset: true, delay: 200 }">
+		<p [ngsReveal]="{ reset: true, delay: 700}">
+			Grâce à <span>vos étapes</span>, nous traçons votre itinéraire automatiquement.
+			Nous prenons évidemment en compte vos différents <span>modes de transport</span> !<br /><br />
+
+			Montrez les <span>lieux d'intérêts</span> que vous visitez sans surchargé l'itinéraire grâce aux <span>free-stop</span>
+			!<br /><br />
+
+			Ajoutez des <span>images, une description, des bons plans</span> sur chacunes de vos étapes afin que vos proches
+			puissent vous suivre !
+		</p>
+	</div>
+</div>
+<div class="strat">
+	<h2 [ngsReveal]="{ reset: true, delay: 200}">Itineraris est totalement <span>gratuit</span> et est extrêmement <span>simple</span> à prendre en main</h2>
+
+	<img src="assets/images/home-2.PNG" alt="Exemple itinéraire Australie sur Itineraris" width="300px" style="display: block;margin: 2.5% auto;border-radius: 50%;" [ngsReveal]="{ reset: true, delay: 700}">
+
+	<ul style="margin: auto;text-align: center;">
+		<li><a href="/compte/connexion.html">Je créé mon journal de bord</a></li>
+		<li><a href="/visiteur/itineraires.html">Je cherche un itinéraire</a></li>
+	</ul>
+	<br />
+	<p style="text-align: center; font-size: 14px;" class="footer">Créé par <a href="http://www.thibaultdulon.com">Thibault
+			Dulon</a></p>
+</div>

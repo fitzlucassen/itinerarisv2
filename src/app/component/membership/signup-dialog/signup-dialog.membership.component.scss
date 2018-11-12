@@ -1,0 +1,74 @@
+@import '../../../../assets/styles/typography';
+@import '../../../../assets/styles/variable';
+
+.mat-padding {
+    width: 90%;
+    text-align: center;
+    margin: 2.5% auto;
+}
+
+mat-icon {
+    width: initial !important;
+    height: initial !important;
+}
+
+#membership-container {
+	h2 {
+		font-family: $fontTravelTitle;
+		font-weight: normal;
+		font-size: 40px;
+		margin-bottom: 5%;
+		color: $mainColor;
+		
+		span{
+			color: $cutColor;
+		}
+
+		&.pink {
+			color: $fontColor;
+		}
+	}
+
+	mat-form-field {
+		width: 50%;
+		height: 60px;
+		font-size: 16px;
+		margin: auto;
+		display: block;
+	}
+
+	button, a{
+		outline: none;
+		width: 240px;
+		display: inline-block;
+		background: $mainColor;
+		border: 1px solid $fontColor;
+		border-radius: 2px;
+	
+		font-family: $fontLightTitle;
+		color: $fontColor;
+		font-size: 20px;
+		text-decoration: none;
+		padding: 11px 20px;
+		cursor: pointer;
+
+		transition: all 0.3s linear;
+
+		&:hover{
+			color: $mainColor;
+			border: 1px solid $mainColor;
+			background: transparent;    
+		}
+	}
+
+	[mat-mini-fab] i, [mat-mini-fab] mat-icon {
+		line-height: 32px;
+	}
+}
+
+mat-spinner{
+    display: block;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+}

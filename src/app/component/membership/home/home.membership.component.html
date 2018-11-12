@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+	<button mat-icon-button (click)="start.toggle();">
+		<mat-icon>menu</mat-icon>
+	</button> &nbsp; &nbsp;
+	<span >Connectez-vous à votre espace</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="left-navigation" [ngStyle]="{'height': screenHeight + 'px'}">
+	<mat-sidenav #start mode="side" opened="false">
+		<mat-nav-list>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>home</mat-icon>
+				<a mat-line href="/">Accueil</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>person</mat-icon>
+				<a mat-line href="/compte/connexion.html">Espace membre</a>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-sidenav>
+
+	<div class="mat-padding">
+		<div id="membership-container">
+			<div class="c3" >
+				<h2 class="big-title">Connectez-vous à <span>votre espace</span></h2>
+
+				<form [formGroup]="form" (ngSubmit)="signin()">
+					<mat-form-field>
+						<input matInput class="big-form" required formControlName="pseudo" placeholder="Pseudo ou e-mail" [(ngModel)]="newUser.email" />
+						<mat-hint *ngIf="!pseudo.untouched && !pseudo.valid && pseudo.errors.required" [ngStyle]="{'color': 'red'}" align="start"
+						 style="right: 0;">pseudo ou e-mail est requis</mat-hint>
+						<mat-hint *ngIf="!pseudo.untouched && !pseudo.valid && pseudo.errors.minlength" [ngStyle]="{'color': 'red'}"
+						 align="start" style="right: 0;">3 caractères minimum</mat-hint>
+					</mat-form-field>
+					<br class="only-responsive" />
+					<mat-form-field>
+						<input matInput class="big-form" required formControlName="password" placeholder="Mot de passe" type="password"
+						 [(ngModel)]="newUser.password" />
+						<mat-hint *ngIf="!password.untouched && !password.valid && password.errors.required" [ngStyle]="{'color': 'red'}"
+						 align="start" style="right: 0;">mot de passe requis</mat-hint>
+						<mat-hint *ngIf="!password.untouched && !password.valid && password.errors.minlength" [ngStyle]="{'color': 'red'}"
+						 align="start" style="right: 0;">3 caractères minimum</mat-hint>
+					</mat-form-field>
+					<br class="only-responsive" />
+					<button>Connexion</button>
+				</form>
+			</div>
+			<div class="c3 bg">
+				<h2 class="big-title pink">Ou <span>créez le</span> rapidement</h2>
+
+				<p class="signup-button"><button (click)="openDialog()">Je crée mon espace voyageur</button></p>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>

@@ -1,0 +1,27 @@
+<div class="mat-padding">
+	<form name="userForm" [formGroup]="form" (ngSubmit)="registerItinerary()">
+		<div layout layout-sm="column">
+			<mat-form-field flex>
+				<input matInput class="big-form" placeholder="Nom de l'itinéraire" formControlName="name" [(ngModel)]="newItinerary.name" required/>
+				<mat-hint *ngIf="!name.untouched && !name.valid && name.errors.required" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">nom requis</mat-hint>
+				<mat-hint *ngIf="!name.untouched && !name.valid && name.errors.minlength" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">3 caractères minimum</mat-hint>
+			</mat-form-field>
+			<mat-form-field flex>
+				<input matInput #search class="big-form" placeholder="Pays principal" formControlName="country" [(ngModel)]="newItinerary.country" required autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control"/>
+				<mat-hint *ngIf="!country.untouched && !country.valid && country.errors.required" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">pays requis</mat-hint>
+			</mat-form-field>
+		</div>
+		<mat-form-field flex style="width: 100% !important;">
+			<textarea matInput class="big-form" placeholder="Description du voyage" formControlName="description" [(ngModel)]="newItinerary.description" required></textarea>
+			<mat-hint *ngIf="!description.untouched && !description.valid && description.errors.required" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">description requise</mat-hint>
+			<mat-hint *ngIf="!description.untouched && !description.valid && description.errors.minlength" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">3 caractères minimum</mat-hint>
+		</mat-form-field>
+		<br/>
+		<div style="text-align: center;"><mat-slide-toggle [checked]="newItinerary.online" (change)="updateOnline()">Itinéraire publique</mat-slide-toggle></div>
+		<br/>
+		<mat-spinner *ngIf="isLoading"></mat-spinner>
+		<br/>
+		<button mat-raised-button color="primary">Valider</button>
+	</form>
+</div>
+

@@ -1,0 +1,35 @@
+@import '../../../../assets/styles/typography';
+@import '../../../../assets/styles/variable';
+
+mat-form-field {
+    width: 43% !important;
+}
+
+textarea, select, mat-select {
+    width: 100%;
+}
+
+[mat-raised-button] {
+    float: right;
+}
+
+mat-spinner {
+    display: block;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+}
+
+h2, h3 {
+    font-family: $fontTravelTitle;
+    font-weight: normal;
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+.details mat-icon{
+    vertical-align: middle;
+}

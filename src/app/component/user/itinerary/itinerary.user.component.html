@@ -1,0 +1,134 @@
+<mat-toolbar color="primary">
+	<button mat-icon-button (click)="start.toggle();next.close();">
+        <mat-icon>menu</mat-icon>
+    </button> &nbsp; &nbsp;
+	<span>Itinéraire</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="left-navigation" [ngStyle]="{'height': screenHeight + 'px'}">
+	<mat-sidenav #start mode="side">
+		<div class="myself">
+			<span flex=""></span>
+			<div layout="row" layout-align="start center">
+				<mat-icon class="mat-avatar ng-isolate-scope mat-default-theme">airplanemode_active</mat-icon>
+				<span flex=""></span>
+			</div>
+			<span flex=""></span>
+			<div class="mat-body-2">{{currentItinerary.name}}</div>
+			<p><a mat-raised-button style="color: black;" (click)="opencontributorPopup()">Ajouter un contributeur</a></p>
+		</div>
+
+		<mat-nav-list>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>add</mat-icon>
+				<a mat-line href="javascript: void(0);" (click)="openDialog()">Créer une étape</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>remove_red_eye</mat-icon>
+				<a mat-line href="javascript: void(0);" (click)="toggleIsStop(false);next.toggle();start.toggle();">Voir les étapes</a>
+			</mat-list-item>
+
+			<mat-divider></mat-divider>
+
+			<mat-list-item>
+				<mat-icon mat-list-avatar>add</mat-icon>
+				<a mat-line href="javascript: void(0);" (click)="openFreeStopDialog()">Créer un free-stop</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>remove_red_eye</mat-icon>
+				<a mat-line href="javascript: void(0);" (click)="toggleIsStop(true);next.toggle();start.toggle();">Voir les free-stops</a>
+			</mat-list-item>
+
+			<mat-divider></mat-divider>
+
+			<mat-list-item *ngIf="itinerarySteps != null && itinerarySteps.length > 0">
+				<mat-icon mat-list-avatar>near_me</mat-icon>
+				<a mat-line (click)="openStepDetailDialog()">Ajouter des détails</a>
+            </mat-list-item>
+			
+			<mat-divider *ngIf="itinerarySteps != null && itinerarySteps.length > 0"></mat-divider>
+
+			<mat-list-item>
+				<mat-icon mat-list-avatar>map</mat-icon>
+				<a mat-line href="/visiteur/{{mapUrl}}" target="_blank" rel="noopener">Voir la carte</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>share</mat-icon>
+				<a mat-line (click)="openSharingPopup()">Partager</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>keyboard_backspace</mat-icon>
+				<a mat-line href="/compte/tableau-de-bord.html">Retour aux itinéraires</a>
+			</mat-list-item>
+
+			<mat-divider></mat-divider>
+
+			<mat-list-item>
+                <mat-icon mat-list-avatar>home</mat-icon>
+                <a mat-line href="/">Accueil</a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-avatar>search</mat-icon>
+                <a mat-line href="/visiteur/itineraires.html">Recherche</a>
+            </mat-list-item>
+
+			<mat-list-item>
+				<mat-icon mat-list-avatar >settings_power</mat-icon>
+				<a mat-line href="javascript: void(0);" (click)="signout()">Deconnexion</a>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-sidenav>
+
+	<mat-sidenav-container class="left-navigation" [ngStyle]="{'height': screenHeight + 'px'}" [hidden]="isStop">
+		<mat-sidenav #next mode="side" opened="false" layout="column" layout-fill class="mat-sidenav-left mat-sidenav-list" mat-component-id="nav">
+			<mat-toolbar class="mat-whiteframe-z1" ng-class="{'mat-hue-1':showSearch}">
+				<div class="mat-toolbar-tools">
+					<h3 *ngIf="!showSearch">
+						<span *ngIf="!isStop">Vos étapes</span>
+						<span *ngIf="isStop">Vos free-stops</span>
+					</h3>
+					<mat-form-field [style.display]="showSearch ? 'inline-block': 'none'">
+						<input matInput matInputDirective="focused" mat-theme="input" [(ngModel)]="search" placeholder="ville de l'étape"/>
+					</mat-form-field>
+					<span flex *ngIf="!showSearch"></span>
+
+					<mat-icon *ngIf="!showSearch" (click)="toggleSearch()">search</mat-icon>
+					<mat-icon *ngIf="showSearch" (click)="toggleSearch()">arrow_back</mat-icon>
+				</div>
+			</mat-toolbar>
+
+			<p *ngIf="isStop" class="helper" style="margin-right:1%;">
+				Un <span>free-stop</span> est un lieu que vous visitez mais que vous ne souhaitez <span>pas relier à l'itinéraire</span> afin de ne pas le surcharger.
+			</p>
+
+			<mat-nav-list flex *ngIf="!isStop">
+				<mat-list-item class="mat-2-line" id="step-{{step.id}}" *ngFor="let step of itinerarySteps | SearchStepPipe : search" role="link" draggable="true" (dragenter)="dragenter($event)" (dragstart)="dragstart($event)" (dragend)="drop($event, step)" [disableRipple]="true">
+					<mat-icon class="dragdrop" mat-list-avatar>drag_handle</mat-icon>
+					<a mat-line href="javascript: void(0);" (click)="editStep(step.id)"><b>{{step.city}}</b></a>
+					<a mat-line href="javascript: void(0);" (click)="editStep(step.id)">{{step.date.substr(0, step.date.indexOf('T'))}}</a>
+					<div>
+						<mat-icon class="little-icon" (click)="editStep(step.id)">mode_edit</mat-icon>
+						<br/>
+						<mat-icon class="little-icon" (click)="removeStep(step.id)">delete</mat-icon>
+					</div>
+				</mat-list-item>
+			</mat-nav-list>
+			<mat-nav-list flex *ngIf="isStop">
+				<mat-list-item class="mat-2-line" id="stop-{{stop.id}}" *ngFor="let stop of itineraryStops | SearchStepPipe : search" role="link" draggable="true" (dragenter)="dragenter($event)" (dragstart)="dragstart($event)" (dragend)="dropStop($event, stop)" [disableRipple]="true">
+					<mat-icon class="dragdrop" mat-list-avatar>drag_handle</mat-icon>
+					<a mat-line href="javascript: void(0);" (click)="editStop(stop.id)"><b>{{stop.city}}</b></a>
+					<a mat-line href="javascript: void(0);" (click)="editStop(stop.id)">{{stop.date.substr(0, stop.date.indexOf('T'))}}</a>
+					<div>
+						<mat-icon class="little-icon" (click)="editStop(stop.id)">mode_edit</mat-icon>
+						<br/>
+						<mat-icon class="little-icon" (click)="removeStop(stop.id)">delete</mat-icon>
+					</div>
+				</mat-list-item>
+			</mat-nav-list>
+		</mat-sidenav>
+
+		<div class="dashboard-home-content">
+			<h1 class="big-title">Gérez votre itinéraire.<br/><br/>Vous pouvez ici gérer les différentes <span>étapes de votre itinéraire</span> !</h1>
+		</div>
+	</mat-sidenav-container>
+</mat-sidenav-container>

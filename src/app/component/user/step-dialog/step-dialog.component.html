@@ -1,0 +1,72 @@
+<div class="mat-padding" style="overflow: auto;" [style.max-height]="screenHeight + 'px'">
+    <form name="userForm" [formGroup]="form" (ngSubmit)="registerStep()">
+        <div layout layout-sm="column">
+            <mat-form-field>
+                <input matInput class="big-form" placeholder="Ville de l'étape" focus="window.scrollTo(0, 0);document.body.scrollTop = 0;"
+                    formControlName="city" [(ngModel)]="newStep.city" required flex autocorrect="off" autocapitalize="off" spellcheck="off"
+                    class="form-control" #search />
+                <mat-hint *ngIf="!city.untouched && !city.valid && city.errors.required" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">ville requise</mat-hint>
+                <mat-hint *ngIf="!city.untouched && !city.valid && city.errors.minlength" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">2 caractères minimum</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" [matDatepicker]="picker" class="big-form" placeholder="Date de l'étape" formControlName="date"
+                    [(ngModel)]="newStep.date" required flex/>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-hint *ngIf="!date.untouched && !date.valid && date.errors.required" [ngStyle]="{'color': 'red'}" align="start" style="right: 0;">date requise</mat-hint>
+            </mat-form-field>
+            <mat-datepicker #picker></mat-datepicker>
+            <button mat-mini-fab type="button" (click)="getCurrentPosition()" style="margin-right: 0;float:right;">
+                <mat-icon class="">location_searching</mat-icon>
+            </button>
+        </div>
+        <mat-form-field style="width:100% !important;">
+            <textarea matInput class="big-form" placeholder="Description de l'étape" formControlName="description" [(ngModel)]="newStep.description"
+                required flex></textarea>
+            <mat-hint *ngIf="!description.untouched && !description.valid && description.errors.required" [ngStyle]="{'color': 'red'}"
+                align="start" style="right: 0;">description requise</mat-hint>
+            <mat-hint *ngIf="!description.untouched && !description.valid && description.errors.minlength" [ngStyle]="{'color': 'red'}"
+                align="start" style="right: 0;">3 caractères minimum</mat-hint>
+        </mat-form-field>
+        <br/>
+        <br/>
+        <mat-form-field style="width:100% !important;">
+            <mat-select placeholder="Type de transport" formControlName="type" [(ngModel)]="newStep.type" required flex>
+                <mat-option value="DRIVING">Terrestre (Voiture/Bus/Train...etc.)</mat-option>
+                <mat-option value="WALKING">Pedestre (à pied)</mat-option>
+                <mat-option value="FLIGHT">Autre (Avion/Bateau...etc.)</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <br/>
+        <br/>
+        <app-upload-file [stepId]="newStep.id" [images]="images"></app-upload-file>
+        <br/>
+        <br/>
+
+        <div *ngIf="isShown" class="details">
+            <h3>Vos bons plans :</h3>
+
+            <mat-list flex>
+                <mat-list-item class="mat-2-line" *ngFor="let detail of stepDetails">
+                    <mat-icon mat-list-avatar>{{detail.type}}</mat-icon>
+                    <a mat-line>
+                        <b>{{detail.name}}</b>
+                    </a>
+                    <a mat-line>~{{detail.price}}€</a>
+
+                    <div style="cursor:pointer">
+						<mat-icon class="little-icon" (click)="editStepDetail(detail.id)">mode_edit</mat-icon>
+						<br/>
+						<mat-icon class="little-icon" (click)="removeStepDetail(detail.id)">delete</mat-icon>
+					</div>
+                </mat-list-item>
+            </mat-list>
+        </div>
+
+        <br/>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <br/>
+        <button mat-raised-button style="margin: 2.5%;" color="primary">Valider</button>
+        <button mat-raised-button style="margin: 2.5%;" [disabled]="stepDetails == null || stepDetails.length == 0" (click)="showDetails()">Voir les détails</button>
+    </form>
+</div>

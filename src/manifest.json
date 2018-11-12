@@ -1,0 +1,26 @@
+{
+    "name": "Itineraris",
+    "short_name": "Itineraris",
+    "icons": [
+        {
+            "src": "assets/images/australie-192x192.png",
+            "sizes": "192x192",
+            "type": "image\/png"
+        },
+        {
+            "src": "assets/images/australie.png",
+            "sizes": "256x256",
+            "type": "image\/png"
+        },
+        {
+            "src": "assets/images/australie-512x512.png",
+            "sizes": "512x512",
+            "type": "image\/png"
+        }
+    ],
+    "theme_color": "#3f51b5",
+    "background_color": "#3f51b5",
+    "orientation": "portrait",
+    "display": "standalone",
+    "start_url": "index.html"
+}

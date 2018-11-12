@@ -1,0 +1,24 @@
+<div class="mat-padding" style="overflow: auto;" [style.max-height]="screenHeight + 'px'">
+	<h2>Vous-êtes plusieurs à participer ?</h2>
+	<h3>Invitez d'autres utilisateurs à contribuer à votre voyage !</h3>
+	<br/>
+	<form name="userForm" [formGroup]="form">
+		<mat-form-field>
+			<input #search matInput type="text" class="big-form" placeholder="Nom ou e-mail de l'utilisateur" formControlName="search"
+			 [(ngModel)]="searchText" flex/>
+		</mat-form-field>
+	</form>
+
+	<mat-nav-list flex style="max-height:200px;overflow:auto;">
+		<mat-list-item class="mat-2-line" *ngFor="let user of users | SearchUserPipe: searchText" role="link">
+			<mat-icon mat-list-avatar style="width: initial;height:initial;">face</mat-icon>
+			<p mat-line href="">{{user.name}} - <i>{{anonymizeStart(user.email)}}<span>{{anonymizeMiddle(user.email)}}</span>{{anonymizeEnd(user.email)}}</i></p>
+
+			<button mat-mini-fab *ngIf="userAlreadyExists(user.id)" (click)="addUserInItinerary(user.id)"><mat-icon>check</mat-icon></button>
+			<button mat-mini-fab *ngIf="!userAlreadyExists(user.id)" (click)="removeUserInItinerary(user.id)" class="gray"><mat-icon>delete</mat-icon></button>
+		</mat-list-item>
+		<mat-list-item *ngIf="(users | SearchUserPipe: searchText) == null || (users | SearchUserPipe: searchText).length === 0">
+			<p mat-line href="javascript: void(0);">Aucun résultat...</p>
+		</mat-list-item>
+	</mat-nav-list>
+</div>

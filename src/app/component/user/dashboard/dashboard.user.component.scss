@@ -1,0 +1,66 @@
+@import '../../../../assets/styles/typography';
+@import '../../../../assets/styles/variable';
+
+h1.big-title {
+    text-align: center;
+    margin-top: 15%;
+    color: $mainColor;
+    
+    span {
+        color: $cutColor;
+    }
+}
+
+mat-icon {
+    width: initial !important;
+    height: initial !important;
+}
+
+.myself {
+    font-family: $fontContent;
+    font-size: 20px;
+    text-align: center;
+    color: rgba($fontColor, 0.87);
+    padding: 15px;
+
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 128px;
+    background-color: $secondColor;
+    z-index: 2;
+
+    box-sizing: border-box;
+    flex-direction: column;
+
+    .mat-body-2 {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: .01em;
+        line-height: 24px;
+        color: rgba($fontColor, 0.87)
+    }
+}
+
+p.helper {
+    font-family: $fontContent;
+    text-align: center;
+
+    display: inline-block;
+    width: 48%;
+
+    span {
+        color: $cutColor;
+    }
+}
+
+div.arrow-container {
+    position: relative;
+    height: 40px;
+
+    img {
+        display: block;
+        position: absolute;
+    }
+}

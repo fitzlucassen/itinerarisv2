@@ -1,0 +1,103 @@
+<mat-toolbar color="primary">
+	<button mat-icon-button (click)="start.toggle();next.close();">
+        <mat-icon>menu</mat-icon>
+    </button> &nbsp; &nbsp;
+	<span>Tableau de bord</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="left-navigation" [ngStyle]="{'height': screenHeight + 'px'}">
+	<mat-sidenav #start mode="side" opened="false">
+		<div class="myself">
+			<span flex=""></span>
+			<div layout="row" layout-align="start center">
+				<mat-icon class="mat-avatar ng-isolate-scope mat-default-theme">face</mat-icon>
+				<span flex=""></span>
+			</div>
+			<span flex=""></span>
+			<div class="mat-body-2">{{currentUser.name}}</div>
+			<div class="mat-body-1">{{currentUser.email}}</div>
+		</div>
+
+		<mat-nav-list>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>add</mat-icon>
+				<a mat-line href="javascript: void(0);" (click)="openDialog()">Créer un itinéraire</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>remove_red_eye</mat-icon>
+				<a mat-line href="javascript: void(0);" (click)="next.toggle();start.toggle();">Voir les itinéraires</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>map</mat-icon>
+				<a mat-line href="/visiteur/{{mapUrl}}" target="_blank" rel="noopener">Voir ma worldmap</a>
+			</mat-list-item>
+
+			<mat-divider></mat-divider>
+
+			<mat-list-item>
+				<mat-icon mat-list-avatar>home</mat-icon>
+				<a mat-line href="/">Accueil</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>search</mat-icon>
+				<a mat-line href="/visiteur/itineraires.html">Recherche</a>
+			</mat-list-item>
+
+			<mat-list-item>
+				<mat-icon mat-list-avatar>settings_power</mat-icon>
+				<a mat-line href="javascript: void(0);" (click)="signout()">Deconnexion</a>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-sidenav>
+
+	<mat-sidenav-container class="left-navigation" [ngStyle]="{'height': screenHeight + 'px'}">
+		<mat-sidenav #next mode="side" opened="false" layout="column" layout-fill class="mat-sidenav-left mat-sidenav-list" mat-component-id="nav">
+			<mat-toolbar class="mat-whiteframe-z1" ng-class="{'mat-hue-1':showSearch}">
+				<div class="mat-toolbar-tools">
+					<h3 *ngIf="!showSearch">
+						Vos itinéraires
+					</h3>
+					<mat-form-field *ngIf="showSearch">
+						<input matInput mat-theme="input" matInputDirective="focused" [(ngModel)]="search" style="color: white;" placeholder="nom de l'itinéraire" />
+					</mat-form-field>
+					<span flex *ngIf="!showSearch"></span>
+
+					<mat-icon *ngIf="!showSearch" (click)="toggleSearch()">search</mat-icon>
+					<mat-icon *ngIf="showSearch" (click)="toggleSearch()">arrow_back</mat-icon>
+				</div>
+			</mat-toolbar>
+
+			<p *ngIf="itineraries != null && itineraries.length > 0" class="helper" style="margin-right:1%;">
+				Cliquez sur un itinéraire pour <span>ajouter des étapes</span>
+			</p>
+			<p *ngIf="itineraries != null && itineraries.length > 0" class="helper" style="margin-left:1%;">
+				Cliquez ici pour <span>modifier votre itinéraire</span>
+			</p>
+
+			<div *ngIf="itineraries != null && itineraries.length > 0" class="arrow-container">
+				<img src="/assets/images/arrow_bottom.png" width="30px" style="left: 60px;"/>
+				<img src="/assets/images/arrow_bottom.png" width="30px" style="right: 10px;"/>
+			</div>
+
+			<mat-nav-list flex>
+				<mat-list-item class="mat-2-line" *ngFor="let itinerary of itineraries | SearchPipe : search" role="link">
+					<mat-icon mat-list-avatar>airplanemode_active</mat-icon>
+					<a mat-line href="/compte/itinéraire/{{itinerary.id}}/{{sanitize(itinerary.name)}}"><b>{{itinerary.name}}</b></a>
+					<a mat-line href="/compte/itinéraire/{{itinerary.id}}/{{sanitize(itinerary.name)}}">{{itinerary.description}}</a>
+
+					<div>
+						<mat-icon class="little-icon" (click)="editItinerary(itinerary.id)">mode_edit</mat-icon>
+						<br/>
+						<mat-icon class="little-icon" (click)="removeItinerary(itinerary.id)">delete</mat-icon>
+					</div>
+				</mat-list-item>
+			</mat-nav-list>
+
+			<mat-spinner *ngIf="isLoading"></mat-spinner>
+		</mat-sidenav>
+
+		<div class="dashboard-home-content">
+			<h1 class="big-title">Bienvenue sur votre tableau de bord.<br/><br/>Vous pouvez ici créer <span>vos itinéraires de voyage</span> !</h1>
+		</div>
+	</mat-sidenav-container>
+</mat-sidenav-container>

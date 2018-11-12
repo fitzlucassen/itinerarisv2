@@ -1,0 +1,13 @@
+<div class="mat-padding" style="overflow: auto;" [style.max-height]="screenHeight + 'px'">
+	<h2>Partagez cet itinéraire dès maintenant</h2>
+	<h3>Via l'URL directement :</h3>
+	<br/>
+	<mat-form-field>
+		<input matInput [(ngModel)]="sharingUrl" class="big-form" placeholder="Lien de partage" focus="window.scrollTo(0, 0);document.body.scrollTop = 0;" flex autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" />
+	</mat-form-field>
+	<br/>
+
+    <h3>Ou via les réseaux sociaux :</h3>
+    
+    <share-buttons [title]="sharingTitle" [description]="sharingDescription" [url]="sharingUrl" [include]="['facebook', 'twitter', 'google', 'linkedin']"></share-buttons>
+</div>
