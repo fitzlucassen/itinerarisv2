@@ -22,7 +22,7 @@
 	<div class="mat-padding">
 		<h2>Vous cherchez l'<span>itinéraire d'un proche</span> ?<br/>Vous souhaitez vous inspirer d'un <span>itinéraire existant</span>			? C'est ici !</h2>
 
-		<mat-tab-group (selectChange)="toggleIsMap()">
+		<mat-tab-group (selectedTabChange)="toggleIsMap()">
 			<mat-tab label="Liste">
 				<mat-card style="text-align: left;">
 					<form name="userForm" [formGroup]="form">

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
@@ -15,6 +14,7 @@ import { WorldMapComponent } from '../../component/visitor/world-map/world-map.c
 import { IInfoWindowComponent } from '../../component/visitor/i-info-window/i-info-window.component';
 
 import { routing } from '../../routing/visitor.routing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     imports: [
@@ -24,6 +24,10 @@ import { routing } from '../../routing/visitor.routing';
         CommonModule,
         HttpModule,
         MatTabsModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatCardModule, MatInputModule, MatMenuModule, MatSelectModule, MatSliderModule, MatSnackBarModule, MatFormFieldModule, MatDatepickerModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyDR6MQEKvMFKiYTS0uZZTA-YIKe2yRcfng',
+            libraries: ['places']
+        }),
         routing
     ],
     declarations: [
