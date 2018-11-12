@@ -26,16 +26,18 @@
               "src/favicon.ico",
               "src/assets",
               "src/favicon.ico",
-              "src/manifest.json",
               "src/sitemap.xml",
               "src/web.config",
               "src/robots.txt",
-              "src/modernizr-custom.js"
+              "src/modernizr-custom.js",
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["./node_modules/scrollreveal/dist/scrollreveal.js"]
+            "scripts": [
+              "./node_modules/scrollreveal/dist/scrollreveal.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -60,7 +62,8 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true
             }
           }
         },
@@ -94,7 +97,8 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json"
             ]
           }
         },

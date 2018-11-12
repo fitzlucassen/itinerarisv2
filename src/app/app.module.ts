@@ -16,6 +16,8 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home/home.component';
 import { UserService } from './service/user.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { UserService } from './service/user.service';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDR6MQEKvMFKiYTS0uZZTA-YIKe2yRcfng',
       libraries: ['places']
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [UserService, AuthGuard, NoAuthGuard],
   bootstrap: [AppComponent]

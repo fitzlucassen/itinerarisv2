@@ -1,0 +1,58 @@
+<mat-toolbar color="primary">
+	<button mat-icon-button (click)="start.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button> &nbsp; &nbsp;
+	<span>Rechercher un itinéraire</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="left-navigation" [ngStyle]="{'height': screenHeight + 'px'}">
+	<mat-sidenav #start mode="side" opened="false">
+		<mat-nav-list>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>home</mat-icon>
+				<a mat-line href="/">Accueil</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>person</mat-icon>
+				<a mat-line href="/compte/connexion.html">Espace membre</a>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-sidenav>
+
+	<div class="mat-padding">
+		<h2>Vous cherchez l'<span>itinéraire d'un proche</span> ?<br/>Vous souhaitez vous inspirer d'un <span>itinéraire existant</span>			? C'est ici !</h2>
+
+		<mat-tab-group (selectChange)="toggleIsMap()">
+			<mat-tab label="Liste">
+				<mat-card style="text-align: left;">
+					<form name="userForm" [formGroup]="form">
+						<mat-form-field>
+							<input #search matInput type="text" class="big-form" placeholder="Nom de l'itinéraire, nom de l'utilisateur, pays de l'itinéraire..."
+							 formControlName="search" [(ngModel)]="searchText" flex/>
+						</mat-form-field>
+					</form>
+
+					<mat-nav-list flex>
+						<mat-list-item class="mat-2-line" *ngFor="let itinerary of itineraries | SearchItineraryPipe: searchText" role="link">
+							<mat-icon mat-list-avatar>airplanemode_active</mat-icon>
+							<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}"><b>{{itinerary.name}} <i>- <span>{{itinerary.country}}</span></i></b></a>
+							<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">{{itinerary.date.substr(0, itinerary.date.indexOf('T'))}}</a>
+
+							<div class="list-item-right">
+								<span style="display:inline-block;">{{itinerary.likes}}</span>
+								<mat-icon class="little-icon" [ngClass]="{'liked': isBlue(itinerary.id)}" style="display:inline-block;vertical-align:bottom;" (click)="like(itinerary.id)">thumb_up</mat-icon>
+							</div>
+						</mat-list-item>
+						<mat-list-item *ngIf="(itineraries | SearchItineraryPipe: searchText).length === 0">
+							<a mat-line href="javascript: void(0);">Aucun résultat...</a>
+						</mat-list-item>
+					</mat-nav-list>
+				</mat-card>
+			</mat-tab>
+			<mat-tab label="Carte">
+				<app-search-map [itineraries]="itineraries"></app-search-map>
+			</mat-tab>
+		</mat-tab-group>
+	</div>
+
+</mat-sidenav-container>

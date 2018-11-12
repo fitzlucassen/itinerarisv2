@@ -1,0 +1,44 @@
+<div id="fb-root"></div>
+
+<mat-toolbar color="primary">
+	<button mat-icon-button (click)="start.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button> &nbsp; &nbsp;
+	<span>Tous les itinéraires de {{title}}</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="left-navigation" [ngStyle]="{'height': screenHeight + 'px'}">
+	<mat-sidenav #start mode="side" opened="false">
+		<mat-nav-list>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>home</mat-icon>
+				<a mat-line href="/">Accueil</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>person</mat-icon>
+				<a mat-line href="/compte/connexion.html">Espace membre</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon mat-list-avatar>search</mat-icon>
+				<a mat-line href="/visiteur/itineraires.html">Recherche</a>
+			</mat-list-item>
+
+			<mat-divider></mat-divider>
+
+			<mat-list-item>
+                <mat-icon mat-list-avatar>share</mat-icon>
+                <a mat-line (click)="openSharingPopup()">Partager</a>
+            </mat-list-item>
+
+			<mat-divider></mat-divider>
+		</mat-nav-list>
+		<br/>
+
+		<h1>Réagissez aux voyages de <span>{{title}}</span></h1>
+		<br/>
+		<div #toAppend>
+		</div>
+	</mat-sidenav>
+
+	<app-map></app-map>
+</mat-sidenav-container>

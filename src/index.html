@@ -9,20 +9,20 @@
   <meta name="description" content="Créez vos itinéraires de voyages et tenez informé vos proches">
   <meta property="og:description" content="Créez vos itinéraires de voyages et tenez informé vos proches">
   <meta property="og:image" content="https://itineraris.fr/assets/images/australie.png">
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://itineraris.fr/" />
-  <meta property="fb:app_id" content="265963237186602" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://itineraris.fr/"/>
+  <meta property="fb:app_id" content="265963237186602"/>
 
-  <meta name="google-site-verification" content="VKn5dK0BnKw2dZIPzNjtywpgZ98FtdCu3s4djdMTE78" />
+  <meta name="google-site-verification" content="VKn5dK0BnKw2dZIPzNjtywpgZ98FtdCu3s4djdMTE78"/>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="theme-color" content="#3f51b5">
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#3f51b5">
 </head>
 
 <body>
@@ -33,20 +33,9 @@
   </noscript>
   <app-root>
     <div class="tempDiv" style="text-align: center;">
-      <img src="/assets/images/loading.gif" alt="loader" width="250px" />
+      <img src="/assets/images/loading.gif" alt="loader" width="250px"/>
     </div>
   </app-root>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
-        // Registration was successful
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }).catch(function (err) {
-        // registration failed :(
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    }
-  </script>
   <script src="/modernizr-custom.js"></script>
 </body>
 

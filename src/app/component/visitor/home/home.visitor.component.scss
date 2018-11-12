@@ -1,0 +1,89 @@
+@import '../../../../assets/styles/typography';
+@import '../../../../assets/styles/variable';
+
+h1 {
+    font-family: $fontTravelTitle;
+    font-size: 150px;
+    color: $mainColor;
+}
+
+h2 {
+    font-family: $fontTravelTitle;
+    font-size: 40px;
+    font-weight: normal;
+    color: $mainColor;
+    text-align: center;
+
+    margin: 0 0 2.5% 0;
+}
+
+h1 span, h2 span {
+    color: $cutColor;
+}
+
+.mat-padding {
+    width: 90%;
+    text-align: center;
+    margin: 2.5% auto;
+}
+
+mat-form-field {
+    width: 100%;
+    height: 50px;
+    font-size: 22px;
+    margin: auto;
+    display: block;
+}
+
+mat-sidenav-container {
+    height: calc(100% - 64px);
+    padding-bottom: 5%;
+}
+
+mat-icon {
+    width: initial !important;
+    height: initial !important;
+}
+
+.mat-body-2 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    line-height: 24px;
+    color: rgba($fontColor, 0.87);
+
+    background-color: $secondColor;
+}
+
+.mat-card > form {
+    margin-bottom: 24px;
+}
+
+mat-list-item {
+    a i span {
+        color: $cutColor;
+    }
+}
+
+.list-item-right {
+    min-width: 70px;
+    text-align: right;
+
+    mat-icon {
+        transition: all 0.3s linear;
+    }
+
+    &:hover mat-icon, .liked {
+        color: $mainColor;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    h1 {
+        text-align: center;
+        font-size: 75px;
+    }
+    h2 {
+        font-size: 30px;
+    }
+}
