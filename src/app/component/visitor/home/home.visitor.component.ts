@@ -8,6 +8,7 @@ import { StorageService } from '../../../service/storage.service';
 import { Itinerary } from '../../../model/itinerary';
 import { SearchItineraryPipe } from '../../../pipe/search-itinerary.pipe';
 import { SearchMapComponent } from '../search-map/search-map.component';
+import { User } from 'src/app/model/user';
 
 @Component({
     selector: 'app-home',
@@ -25,7 +26,9 @@ export class HomeVisitorComponent implements OnInit {
 
     isMap = false;
 
+    bestItineraries: Array<Itinerary> = [];
     itineraries: Array<Itinerary> = [];
+    bestUsers: Array<User> = [];
 
     constructor(private fb: FormBuilder, private itineraryService: ItineraryService, private storageService: StorageService, private router: Router, private metaService: Meta, private titleService: Title) {
         this.titleService.setTitle('Trouvez un itinéraire de voyage');
@@ -104,8 +107,44 @@ export class HomeVisitorComponent implements OnInit {
         return encodeURIComponent(tmp);
     }
 
+    getTravelCount(userId: number) {
+        var length = this.itineraries.filter(i => i.users.filter(u => u.id == userId).length > 0).length;
+        
+        return length == 1 
+            ? 'son premier voyage' 
+            : 'ses ' + length + ' voyages';
+    }
+
     private assignItineraries(result: Array<Itinerary>) {
         this.itineraries = result.sort(this.sorter);
+        this.bestItineraries = this.itineraries.filter((u, i) => i < 4);
+        var uusers = this.itineraries.map(u => u.users);
+
+        var users = new Array<User>();
+        uusers.forEach(u => {
+            var cpt = 0;
+
+            while (cpt < u.length) {
+                users.push(u[cpt++]);
+            }
+        });
+
+        var sortedUsers = users.sort((a: User, b: User) => {
+            var aPresent = users.filter(u => u.id == a.id).length;
+            var bPresent = users.filter(u => u.id == b.id).length;
+
+            if (aPresent < bPresent)
+                return 1;
+            else if (aPresent > bPresent)
+                return -1;
+            else
+                return 0;
+        });
+
+        sortedUsers.forEach(element => {
+            if (this.bestUsers.findIndex(u => u.id == element.id) < 0 && this.bestUsers.length < 5)
+                this.bestUsers.push(element);
+        });
     }
 
     private sorter(a: Itinerary, b: Itinerary) {

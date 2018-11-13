@@ -17,6 +17,14 @@ h2 {
     margin: 0 0 2.5% 0;
 }
 
+h3 {
+    font-family: $fontTravelTitle;
+    font-size: 28px;
+    font-weight: normal;
+    color: $mainColor;
+    text-align: center;
+}
+
 h1 span, h2 span {
     color: $cutColor;
 }
@@ -25,6 +33,22 @@ h1 span, h2 span {
     width: 90%;
     text-align: center;
     margin: 2.5% auto;
+
+    .tier-column {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(32% - 32px);
+        margin-right: 1%;
+
+        text-align: justify;
+    }
+
+    .two-tier-column {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(65% - 32px);
+        margin-left: 1%;
+    }
 }
 
 mat-form-field {

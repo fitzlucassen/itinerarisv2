@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
 	<button mat-icon-button (click)="start.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button> &nbsp; &nbsp;
+		<mat-icon>menu</mat-icon>
+	</button> &nbsp; &nbsp;
 	<span>Rechercher un itinéraire</span>
 </mat-toolbar>
 
@@ -20,7 +20,51 @@
 	</mat-sidenav>
 
 	<div class="mat-padding">
-		<h2>Vous cherchez l'<span>itinéraire d'un proche</span> ?<br/>Vous souhaitez vous inspirer d'un <span>itinéraire existant</span>			? C'est ici !</h2>
+		<h2>Vous souhaitez vous inspirer d'un <span>itinéraire existant</span> ? C'est ici !</h2>
+
+		<mat-card class="tier-column">
+			<h3>Les grands voyageurs</h3>
+
+			<mat-nav-list flex>
+				<mat-list-item class="mat-2-line" *ngFor="let user of bestUsers" role="link">
+					<mat-icon mat-list-avatar>face</mat-icon>
+					<a mat-line href="/visiteur/world/{{user.id}}/{{sanitize(user.name)}}">
+						<b>
+							{{user.name}} <i> et <span>{{getTravelCount(user.id)}}</span></i>
+						</b>
+					</a>
+				</mat-list-item>
+				<mat-list-item *ngIf="bestUsers.length === 0">
+					<a mat-line href="javascript: void(0);">Aucun résultat...</a>
+				</mat-list-item>
+			</mat-nav-list>
+		</mat-card>
+
+		<mat-card class="two-tier-column">
+			<h3>Les plus beaux itinéraires</h3>
+
+			<mat-nav-list flex>
+					<mat-list-item class="mat-2-line" *ngFor="let itinerary of bestItineraries" role="link">
+						<mat-icon mat-list-avatar>airplanemode_active</mat-icon>
+						<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">
+							<b>
+								{{itinerary.name}}  
+								<i>- <span>{{itinerary.country}}</span></i>
+							</b>
+						</a>
+						<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">
+							{{itinerary.date.substr(0, itinerary.date.indexOf('T'))}}
+						</a>
+					</mat-list-item>
+					<mat-list-item *ngIf="(itineraries | SearchItineraryPipe: searchText).length === 0">
+						<a mat-line href="javascript: void(0);">Aucun résultat...</a>
+					</mat-list-item>
+				</mat-nav-list>
+		</mat-card>
+		<br/>
+		<br/>
+		<br/>
+		<h2>Vous cherchez l'<span>itinéraire d'un proche</span> ? C'est là !</h2>
 
 		<mat-tab-group (selectedTabChange)="toggleIsMap()">
 			<mat-tab label="Liste">
