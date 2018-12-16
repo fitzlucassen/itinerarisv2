@@ -41,6 +41,13 @@ app-itinerary-user-dialog .mat-button-wrapper {
 	background: transparent url(/assets/images/bg2.png) center center no-repeat;
 }
 
+.no-webp .membership-mat-padding {
+	background: $fontColor url('/assets/images/membership-1.jpg') center center no-repeat;
+}
+.webp .membership-mat-padding {
+	background: $fontColor url('/assets/images/membership-1.webp') center center no-repeat;
+}
+
 .webp .big-container, .no-webp .big-container {
 	position: fixed;
 	top: 0;
@@ -143,6 +150,7 @@ mat-tab-header {
 
 	.mat-tab-label {
 		font-size: 16px !important;
+		color: $fontColor;
 	}
 
 	.mat-tab-label[aria-selected="true"] {
@@ -151,7 +159,7 @@ mat-tab-header {
 	}
 
 	.mat-ink-bar {
-		background-color: $mainColor !important;
+		background-color: $fontColor !important;
 	}
 }
 

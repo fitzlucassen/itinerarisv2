@@ -56,6 +56,36 @@
 			font-family: $fontContent;
 		}
 	}
+
+	.button-container{
+		width: 320px;
+		display: block;
+		text-align: center;
+	}
+	.button {
+		outline: none;
+		display: block;
+		width: 200px;
+		background: $mainColor;
+		border: 1px solid $fontColor;
+		border-radius: 2px;
+	
+		font-family: $fontLightTitle;
+		color: $fontColor;
+		font-size: 14px;
+		text-decoration: none;
+		padding: 8px 15px;
+		cursor: pointer;
+		margin: auto;
+		
+		transition: all 0.3s linear;
+	
+		&:hover{
+			color: $mainColor;
+			border: 1px solid $mainColor;
+			background: transparent;    
+		}
+	}
 }
 
 .gm-style-iw {
@@ -79,11 +109,18 @@
 
 .iw-close {
 	opacity: 1;
-	right: 38px;
-	top: 3px !important;
-	border: 7px solid $mainColor;
-	border-radius: 13px;
-	box-shadow: 0 0 5px $thirdColor;
+	width: 33px !important;
+	height: 33px !important;
+	right: 8px !important;
+	top: 1px !important;
+	background: $fontColor !important;
+	border: 7px solid $mainColor !important;
+	border-radius: 50%;
+	box-shadow: 0 0 3px $thirdColor;
+
+	img {
+		margin: 3px 3px !important;
+	}
 }
 
 @media screen and (max-width: 450px) {

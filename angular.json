@@ -33,10 +33,15 @@
               "src/manifest.json"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/libraries/material/material-icons.scss",
+              "./node_modules/lightbox2/dist/css/lightbox.min.css",
+              "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
-              "./node_modules/scrollreveal/dist/scrollreveal.js"
+              "./node_modules/scrollreveal/dist/scrollreveal.js",
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/lightbox2/dist/js/lightbox.min.js"
             ]
           },
           "configurations": {

@@ -403,12 +403,14 @@ export class MapComponent implements OnInit {
             infoWindow.instance.open(that.map, marker);
             infoWindow.changeDetectorRef.detectChanges();
 
-            const preElement: any = document.getElementsByClassName('gm-style-iw')[0].previousElementSibling;
-            const nextElement: any = document.getElementsByClassName('gm-style-iw')[0].nextElementSibling;
-
-            preElement.children[1].style.display = 'none';
-            preElement.children[3].style.display = 'none';
-            nextElement.className = 'iw-close';
+            setTimeout(function(){
+                const preElement: any = document.getElementsByClassName('gm-style-iw')[0].previousElementSibling;
+                const nextElement: any = document.getElementsByClassName('gm-style-iw')[0].nextElementSibling;
+    
+                preElement.children[1].style.display = 'none';
+                preElement.children[3].style.display = 'none';
+                nextElement.className = 'iw-close';
+            }, 100);
         });
     }
 

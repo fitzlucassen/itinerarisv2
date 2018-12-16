@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-home',
@@ -8,6 +9,7 @@ import { Meta, Title } from '@angular/platform-browser';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+    private isWebpEnabledSource = new Subject<boolean>();
 
     constructor(private router: Router, private metaService: Meta, private titleService: Title) {
         this.titleService.setTitle('Vos itinéraires de voyages - Itineraris');
@@ -17,5 +19,21 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    isWebpEnabledAnnounced$ = this.isWebpEnabledSource.asObservable();
+
+    isWebpEnabled() {
+        let webpImage = new Image();
+
+        webpImage.src = 'data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACyAgCdASoCAAEALmk0mk0iIiIiIgBoSygABc6zbAAA/v56QAAAAA==';
+
+        webpImage.onload = () => {
+            if (webpImage.width === 2 && webpImage.height === 1) {
+                this.isWebpEnabledSource.next(true);
+            } else {
+                this.isWebpEnabledSource.next(false);
+            }
+        }
     }
 }

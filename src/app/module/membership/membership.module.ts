@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { MatGridListModule, MatAutocompleteModule, MatSlideToggleModule, MatProgressSpinnerModule, MatNativeDateModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatCardModule, MatInputModule, MatMenuModule, MatSelectModule, MatSliderModule, MatSnackBarModule, MatFormFieldModule, MatDatepickerModule } from '@angular/material';
 
 import { NgsRevealModule } from 'ngx-scrollreveal';
-import { ShareButtonsModule } from '@ngx-share/buttons';
 
 import { HomeMembershipComponent } from '../../component/membership/home/home.membership.component';
 import { SignUpDialogComponent } from '../../component/membership/signup-dialog/signup-dialog.membership.component';
@@ -17,7 +16,6 @@ import { UploadFileComponent } from '../../component/common/upload-file/upload-f
 import { ItineraryUserComponent } from '../../component/user/itinerary/itinerary.user.component';
 import { ItineraryUserDialogComponent } from '../../component/user/itinerary-user-dialog/itinerary-user-dialog.component';
 import { StepDetailDialogComponent } from '../../component/user/step-detail-dialog/step-detail-dialog.component';
-import { SharingDialogComponent } from '../../component/common/sharing-dialog/sharing-dialog.component';
 
 import { SearchPipe } from '../../pipe/search.pipe';
 import { SearchStepPipe } from '../../pipe/search-step.pipe';
@@ -38,7 +36,6 @@ import { routing } from '../../routing/membership.routing';
         StopDialogComponent,
         UploadFileComponent,
         StepDetailDialogComponent,
-        SharingDialogComponent,
         SearchPipe,
         SearchStepPipe,
         SearchUserPipe,
@@ -50,7 +47,6 @@ import { routing } from '../../routing/membership.routing';
         StopDialogComponent,
         ItineraryUserDialogComponent,
         StepDetailDialogComponent,
-        SharingDialogComponent
     ],
     imports: [
         ReactiveFormsModule,
@@ -58,7 +54,6 @@ import { routing } from '../../routing/membership.routing';
         CommonModule,
         HttpModule,
         NgsRevealModule,
-        ShareButtonsModule.forRoot(),
         MatGridListModule, MatAutocompleteModule, MatSlideToggleModule, MatProgressSpinnerModule, MatNativeDateModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatCardModule, MatInputModule, MatMenuModule, MatSelectModule, MatSliderModule, MatSnackBarModule, MatFormFieldModule, MatDatepickerModule,
         routing
     ]

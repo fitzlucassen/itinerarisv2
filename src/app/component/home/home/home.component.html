@@ -34,7 +34,7 @@
 	</div>
 
 	<div class="plain-description">
-		<img src="assets/images/home-1.PNG" alt="Exemple itinéraire Itineraris" width="300px;" [ngsReveal]="{ reset: true, delay: 200 }">
+		<img src="{{isWebpEnabled ? 'assets/images/home-1.webp' : 'assets/images/home-1.PNG'}}" alt="Exemple itinéraire Itineraris" width="300px;" [ngsReveal]="{ reset: true, delay: 200 }">
 		<p [ngsReveal]="{ reset: true, delay: 700}">
 			Grâce à <span>vos étapes</span>, nous traçons votre itinéraire automatiquement.
 			Nous prenons évidemment en compte vos différents <span>modes de transport</span> !<br /><br />
@@ -50,7 +50,7 @@
 <div class="strat">
 	<h2 [ngsReveal]="{ reset: true, delay: 200}">Itineraris est totalement <span>gratuit</span> et est extrêmement <span>simple</span> à prendre en main</h2>
 
-	<img src="assets/images/home-2.PNG" alt="Exemple itinéraire Australie sur Itineraris" width="300px" style="display: block;margin: 2.5% auto;border-radius: 50%;" [ngsReveal]="{ reset: true, delay: 700}">
+	<img src="{{isWebpEnabled ? 'assets/images/home-2.webp' : 'assets/images/home-2.PNG'}}" alt="Exemple itinéraire Australie sur Itineraris" width="300px" style="display: block;margin: 2.5% auto;border-radius: 50%;" [ngsReveal]="{ reset: true, delay: 700}">
 
 	<ul style="margin: auto;text-align: center;">
 		<li><a href="/compte/connexion.html">Je créé mon journal de bord</a></li>

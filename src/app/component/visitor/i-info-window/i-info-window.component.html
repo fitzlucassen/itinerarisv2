@@ -4,7 +4,7 @@
     </div>
     <div class="iw-title">
         {{title}}
-        <br/>
+        <br />
         <i class="iw-subTitle">{{date}}</i>
     </div>
     <div class="iw-content">
@@ -14,7 +14,7 @@
                     <mat-icon>subject</mat-icon>&nbsp;&nbsp;
                     <span>Résumé</span>
                 </p>
-                <p class="tab-header" [class.active]="!isSumupTabActive" (click)="toggleSumup($event)">
+                <p class="tab-header" [class.active]="!isSumupTabActive" (click)="toggleSumup($event)" *ngIf="astuces != null && astuces.length > 0">
                     <mat-icon>near_me</mat-icon>&nbsp;&nbsp;
                     <span>Bons plans</span>
                 </p>
@@ -23,7 +23,7 @@
             <div class="tab-contents">
                 <div class="tab-content" [class.active]="isSumupTabActive" [innerHTML]="description">
                 </div>
-                <div class="tab-content" [class.active]="!isSumupTabActive">
+                <div class="tab-content" [class.active]="!isSumupTabActive" *ngIf="astuces != null && astuces.length > 0">
                     <div class="tips-container">
                         <div class="tip-container" class="mat-2-line" *ngFor="let detail of astuces">
                             <p class="tip">
@@ -42,17 +42,22 @@
             </div>
         </div>
 
-        <br/>
+        <br />
 
-        <div class="iw-footer" *ngIf="isTherePictures">
-            <a href="{{mainPictureUrl}}" data-lightbox="image" data-title="{{mainPictureCaption}}">Voir les photos</a>
+        <div class="iw-footer" *ngIf="isTherePictures" style="text-decoration: none;">
+            <a href="{{mainPictureUrl}}" data-lightbox="image" data-title="{{mainPictureCaption}}" style="text-decoration: none;">
+                <mat-icon mat-list-avatar style="vertical-align: middle;">image</mat-icon>
+                &nbsp;
+                <span style="vertical-align: middle;">Voir les photos</span>
+            </a>
         </div>
         <div>
             <ul style="padding: 0;">
                 <li *ngFor="let picture of pictures">
-                    <a href="{{serviceUrl + '/' + picture.url}}" data-lightbox="image" data-title="{{picture.caption}}" *ngIf="picture.url != pictures[0].url">
-                        <img class="ui bordered small image" src="{{serviceUrl + '/' + picture.url}}" alt="{{picture.caption}}" title="{{picture.caption}}"
-                        />
+                    <a href="{{serviceUrl + '/' + picture.url}}" data-lightbox="image" data-title="{{picture.caption}}"
+                        *ngIf="picture.url != pictures[0].url">
+                        <img class="ui bordered small image" src="{{serviceUrl + '/' + picture.url}}" alt="{{picture.caption}}"
+                            title="{{picture.caption}}" />
                     </a>
                 </li>
             </ul>

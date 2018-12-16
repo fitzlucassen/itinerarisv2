@@ -29,10 +29,21 @@ h1 span, h2 span {
     color: $cutColor;
 }
 
+
+.strat {
+    background: $secondColor;
+    padding: 2.5%;
+    box-shadow: inset 4px 4px 8px rgba(9, 64, 116, 0.8);
+
+    h2{
+        text-align: center;
+        color: $fontColor;
+    }
+}
+
 .mat-padding {
-    width: 90%;
     text-align: center;
-    margin: 2.5% auto;
+    margin: 2.5% auto 0 auto;
 
     .tier-column {
         display: inline-block;
@@ -61,7 +72,6 @@ mat-form-field {
 
 mat-sidenav-container {
     height: calc(100% - 64px);
-    padding-bottom: 5%;
 }
 
 mat-icon {
@@ -109,5 +119,13 @@ mat-list-item {
     }
     h2 {
         font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .tier-column, .two-tier-column {
+        display: block !important;
+        width: 100% !important;
+        margin: 2% auto !important;
     }
 }

@@ -91,7 +91,7 @@ export class SearchMapComponent implements OnInit {
         const username = itinerary.users[0].name;
         const itineraryid = itinerary.id;
 
-        content += '<br/><p><a href="/visiteur/' + this.sanitize(username) + '/' + itineraryid + '/' + this.sanitize(itinerary.name) + '" target="_blank" rel="noopener">Voir l\'itinéraire de ' + username + '</a></p>';
+        content += '<br/><p><span class="button-container"><a href="/visiteur/' + this.sanitize(username) + '/' + itineraryid + '/' + this.sanitize(itinerary.name) + '" target="_blank" rel="noopener" class="button">Voir l\'itinéraire de ' + username + '</a></span></p>';
 
         const that = this;
 

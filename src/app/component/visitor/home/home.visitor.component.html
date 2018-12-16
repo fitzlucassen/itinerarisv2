@@ -44,59 +44,66 @@
 			<h3>Les plus beaux itinéraires</h3>
 
 			<mat-nav-list flex>
-					<mat-list-item class="mat-2-line" *ngFor="let itinerary of bestItineraries" role="link">
-						<mat-icon mat-list-avatar>airplanemode_active</mat-icon>
-						<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">
-							<b>
-								{{itinerary.name}}  
-								<i>- <span>{{itinerary.country}}</span></i>
-							</b>
-						</a>
-						<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">
-							{{itinerary.date.substr(0, itinerary.date.indexOf('T'))}}
-						</a>
-					</mat-list-item>
-					<mat-list-item *ngIf="(itineraries | SearchItineraryPipe: searchText).length === 0">
-						<a mat-line href="javascript: void(0);">Aucun résultat...</a>
-					</mat-list-item>
-				</mat-nav-list>
+				<mat-list-item class="mat-2-line" *ngFor="let itinerary of bestItineraries" role="link">
+					<mat-icon mat-list-avatar>airplanemode_active</mat-icon>
+					<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">
+						<b>
+							{{itinerary.name}}
+							<i>- <span>{{itinerary.country}}</span></i>
+						</b>
+					</a>
+					<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">
+						{{itinerary.date.substr(0, itinerary.date.indexOf('T'))}}
+					</a>
+				</mat-list-item>
+				<mat-list-item *ngIf="(itineraries | SearchItineraryPipe: searchText).length === 0">
+					<a mat-line href="javascript: void(0);">Aucun résultat...</a>
+				</mat-list-item>
+			</mat-nav-list>
 		</mat-card>
-		<br/>
-		<br/>
-		<br/>
-		<h2>Vous cherchez l'<span>itinéraire d'un proche</span> ? C'est là !</h2>
 
-		<mat-tab-group (selectedTabChange)="toggleIsMap()">
-			<mat-tab label="Liste">
-				<mat-card style="text-align: left;">
-					<form name="userForm" [formGroup]="form">
-						<mat-form-field>
-							<input #search matInput type="text" class="big-form" placeholder="Nom de l'itinéraire, nom de l'utilisateur, pays de l'itinéraire..."
-							 formControlName="search" [(ngModel)]="searchText" flex/>
-						</mat-form-field>
-					</form>
+		<br />
+		<br />
+		<br />
 
-					<mat-nav-list flex>
-						<mat-list-item class="mat-2-line" *ngFor="let itinerary of itineraries | SearchItineraryPipe: searchText" role="link">
-							<mat-icon mat-list-avatar>airplanemode_active</mat-icon>
-							<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}"><b>{{itinerary.name}} <i>- <span>{{itinerary.country}}</span></i></b></a>
-							<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">{{itinerary.date.substr(0, itinerary.date.indexOf('T'))}}</a>
+		<div class="strat">
+			<h2>Vous cherchez l'<span>itinéraire d'un proche</span> ? C'est là !</h2>
 
-							<div class="list-item-right">
-								<span style="display:inline-block;">{{itinerary.likes}}</span>
-								<mat-icon class="little-icon" [ngClass]="{'liked': isBlue(itinerary.id)}" style="display:inline-block;vertical-align:bottom;" (click)="like(itinerary.id)">thumb_up</mat-icon>
-							</div>
-						</mat-list-item>
-						<mat-list-item *ngIf="(itineraries | SearchItineraryPipe: searchText).length === 0">
-							<a mat-line href="javascript: void(0);">Aucun résultat...</a>
-						</mat-list-item>
-					</mat-nav-list>
-				</mat-card>
-			</mat-tab>
-			<mat-tab label="Carte">
-				<app-search-map [itineraries]="itineraries"></app-search-map>
-			</mat-tab>
-		</mat-tab-group>
+			<mat-tab-group (selectedTabChange)="toggleIsMap()">
+				<mat-tab label="Liste">
+					<mat-card style="text-align: left;">
+						<form name="userForm" [formGroup]="form">
+							<mat-form-field>
+								<input #search matInput type="text" class="big-form" placeholder="Nom de l'itinéraire, nom de l'utilisateur, pays de l'itinéraire..."
+								 formControlName="search" [(ngModel)]="searchText" flex />
+							</mat-form-field>
+						</form>
+
+						<mat-nav-list flex style="max-height: 300px;overflow: auto;">
+							<mat-list-item class="mat-2-line" *ngFor="let itinerary of itineraries | SearchItineraryPipe: searchText" role="link">
+								<mat-icon mat-list-avatar>airplanemode_active</mat-icon>
+								<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}"><b>{{itinerary.name}}
+										<i>- <span>{{itinerary.country}}</span></i></b></a>
+								<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">{{itinerary.date.substr(0,
+									itinerary.date.indexOf('T'))}}</a>
+
+								<div class="list-item-right">
+									<span style="display:inline-block;">{{itinerary.likes}}</span>
+									<mat-icon class="little-icon" [ngClass]="{'liked': isBlue(itinerary.id)}" style="display:inline-block;vertical-align:bottom;"
+									 (click)="like(itinerary.id)">thumb_up</mat-icon>
+								</div>
+							</mat-list-item>
+							<mat-list-item *ngIf="(itineraries | SearchItineraryPipe: searchText).length === 0">
+								<a mat-line href="javascript: void(0);">Aucun résultat...</a>
+							</mat-list-item>
+						</mat-nav-list>
+					</mat-card>
+				</mat-tab>
+				<mat-tab label="Carte">
+					<app-search-map [itineraries]="itineraries"></app-search-map>
+				</mat-tab>
+			</mat-tab-group>
+		</div>
 	</div>
 
 </mat-sidenav-container>
