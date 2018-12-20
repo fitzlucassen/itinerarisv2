@@ -28,6 +28,10 @@ h1.big-title{
 	}
 }
 
+span.cut {
+	color: $cutColor;
+}
+
 app-itinerary-user-dialog .mat-button-wrapper {
 	padding: 0 !important;
 }

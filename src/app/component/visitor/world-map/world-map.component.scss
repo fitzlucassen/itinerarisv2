@@ -8,6 +8,55 @@
 
 mat-sidenav-container {
 	height: 100%;
+
+	.mat-padding {
+		.user-card {
+			width: 50%;
+			margin: 5% auto;
+			position: relative;
+
+			.user-avatar {
+				position: absolute;
+				left: 50%;
+				top: -50px;
+				transform: translateX(-50%);
+
+				width: 80px;
+				height: 55px;
+				border-radius: 50%;
+				background: #fff;
+
+				border: 10px solid $secondColor;
+				text-align: center;
+				padding-top: 25px;
+			}
+
+			ul li {
+				list-style: none;
+				font-family: $fontTravelTitle;
+				font-size: 24px;
+				line-height: 40px;
+			}
+		}
+		.strat {
+			background: $secondColor;
+			padding: 2.5%;
+			box-shadow: inset 4px 4px 8px rgba(9, 64, 116, 0.8);
+		
+			h2{
+				text-align: center;
+				color: $fontColor;
+			}
+
+			mat-form-field {
+				width: 100%;
+				height: 40px;
+				font-size: 18px;
+				margin: auto;
+				display: block;
+			}
+		}
+	}
 }
 
 h1.big-title {
@@ -18,6 +67,12 @@ h1.big-title {
 mat-icon {
 	width: initial !important;
 	height: initial !important;
+}
+
+mat-list-item {
+    a i span {
+        color: $cutColor;
+    }
 }
 
 .mat-body-2 {

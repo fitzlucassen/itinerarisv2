@@ -2,8 +2,8 @@
 
 <mat-toolbar color="primary">
 	<button mat-icon-button (click)="start.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button> &nbsp; &nbsp;
+		<mat-icon>menu</mat-icon>
+	</button> &nbsp; &nbsp;
 	<span>Tous les itinéraires de {{title}}</span>
 </mat-toolbar>
 
@@ -26,19 +26,69 @@
 			<mat-divider></mat-divider>
 
 			<mat-list-item>
-                <mat-icon mat-list-avatar>share</mat-icon>
-                <a mat-line (click)="openSharingPopup()">Partager</a>
-            </mat-list-item>
+				<mat-icon mat-list-avatar>share</mat-icon>
+				<a mat-line (click)="openSharingPopup()">Partager</a>
+			</mat-list-item>
 
 			<mat-divider></mat-divider>
 		</mat-nav-list>
-		<br/>
+		<br />
 
 		<h1>Réagissez aux voyages de <span>{{title}}</span></h1>
-		<br/>
+		<br />
 		<div #toAppend>
 		</div>
 	</mat-sidenav>
 
-	<app-map></app-map>
+	<div class="mat-padding">
+		<mat-card class="user-card">
+			<div class="user-avatar">
+				<mat-icon style="font-size: 30px;">face</mat-icon>
+			</div>
+			<br/>
+			<br/>
+			
+			<h2>{{title}}</h2>
+			<ul>
+				<li [innerHTML]="countryString"></li>
+				<li [innerHTML]="stepString"></li>
+			</ul>
+		</mat-card>
+
+		<div class="strat">
+			<h2>Vous cherchez un itinéraire en particulier ? C'est là !</h2>
+			<br/>
+			<br/>
+
+			<mat-card style="text-align: left;">
+				<form name="userForm" [formGroup]="form">
+					<mat-form-field>
+						<input #search matInput type="text" class="big-form" placeholder="Nom de l'itinéraire, pays de l'itinéraire..."
+							formControlName="search" [(ngModel)]="searchText" flex />
+					</mat-form-field>
+				</form>
+				<br/>
+				<br/>
+
+				<mat-nav-list flex style="max-height: 300px;overflow: auto;">
+					<mat-list-item class="mat-2-line" *ngFor="let itinerary of itineraries | SearchItineraryPipe: searchText" role="link">
+						<mat-icon mat-list-avatar>airplanemode_active</mat-icon>
+						<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}"><b>{{itinerary.name}}
+								<i>- <span>{{itinerary.country}}</span></i></b></a>
+						<a mat-line href="/visiteur/{{sanitize(itinerary.users[0].name)}}/{{itinerary.id}}/{{sanitize(itinerary.name)}}">{{itinerary.date.substr(0,
+							itinerary.date.indexOf('T'))}}</a>
+
+						<div class="list-item-right">
+							<span style="display:inline-block;">{{itinerary.likes}}</span>
+							<mat-icon class="little-icon" [ngClass]="{'liked': isBlue(itinerary.id)}" style="display:inline-block;vertical-align:bottom;"
+								(click)="like(itinerary.id)">thumb_up</mat-icon>
+						</div>
+					</mat-list-item>
+					<mat-list-item *ngIf="(itineraries | SearchItineraryPipe: searchText) == null || (itineraries | SearchItineraryPipe: searchText).length === 0">
+						<a mat-line href="javascript: void(0);">Aucun résultat...</a>
+					</mat-list-item>
+				</mat-nav-list>
+			</mat-card>
+		</div>
+	</div>
 </mat-sidenav-container>
