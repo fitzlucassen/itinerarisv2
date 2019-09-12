@@ -201,7 +201,7 @@ export class WorldMapComponent implements OnInit, OnDestroy {
     }
 
     private assignItineraries(result: Array<Itinerary>) {
-        this.itineraries = result;
+        this.itineraries = result.filter(r => r.online);
         this.countries = this.itineraries.map(i => i.country);
         this.countryString = this.getCountryString();
     }

@@ -50,7 +50,11 @@ export class IInfoWindowComponent implements OnInit, AfterViewChecked {
             }
 
             $event.srcElement.classList.add('active');
-            $event.srcElement.parentElement.children.item($event.srcElement.parentElement.children.length - 1).setAttribute('style', 'left: ' + currentIndex * 160 + 'px');
+
+            let leftIndex = $event.srcElement.clientWidth == 140 ? 140 : 160;
+
+            console.log($event.srcElement.clientWidth);
+            $event.srcElement.parentElement.children.item($event.srcElement.parentElement.children.length - 1).setAttribute('style', 'left: ' + currentIndex * leftIndex + 'px');
 
             const bodies = $event.srcElement.parentElement.parentElement.lastElementChild.children;
 

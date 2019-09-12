@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CurrencyService {
-    apiUrl = 'https://free.currencyconverterapi.com/api/v5/';
-    accessToken = '625715ed082dd31d25a0f45ad4237cfa';
+    apiUrl = 'https://free.currencyconverterapi.com/api/v6/';
+    accessToken = '9adfee9e7c28a72e8d6c';
 
     constructor(private http: Http) { }
 
@@ -13,7 +13,7 @@ export class CurrencyService {
         const endpoint = 'convert';
 
         return this.http
-            .get(this.apiUrl + endpoint + `?&compact=ultra&q=${currency}_EUR`)
+            .get(this.apiUrl + endpoint + `?compact=ultra&q=${currency}_EUR&apiKey=${this.accessToken}`)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -22,7 +22,7 @@ export class CurrencyService {
         const endpoint = 'currencies';
 
         return this.http
-            .get(this.apiUrl + endpoint + ``)
+            .get(this.apiUrl + endpoint + `?apiKey=${this.accessToken}`)
             .map(this.extractData)
             .catch(this.handleError);
     }

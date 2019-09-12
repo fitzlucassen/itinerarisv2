@@ -50,6 +50,7 @@ h1 span, h2 span {
         vertical-align: top;
         width: calc(32% - 32px);
         margin-right: 1%;
+        margin-bottom: 2.5%;
 
         text-align: justify;
     }
@@ -59,6 +60,7 @@ h1 span, h2 span {
         vertical-align: top;
         width: calc(65% - 32px);
         margin-left: 1%;
+        margin-bottom: 2.5%;
     }
 }
 
@@ -125,7 +127,7 @@ mat-list-item {
 @media screen and (max-width: 700px) {
     .tier-column, .two-tier-column {
         display: block !important;
-        width: 100% !important;
+        width: calc(100% - 32px) !important;
         margin: 2% auto !important;
     }
 }
